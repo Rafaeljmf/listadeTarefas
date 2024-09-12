@@ -25,15 +25,15 @@ Para executar a aplicação localmente, siga os passos abaixo:
 
 - Instale as dependências: Na pasta do projeto, execute:
 
-°  npm install
+- npm install
 
 - Rode o projeto: Após a instalação, inicie o servidor de desenvolvimento com:
 
-°  npm run dev
+- npm run dev
 
 - Acesse a aplicação: Abra o navegador e vá para o endereço:
 
-°  http://localhost:3000
+- http://localhost:3000
 
 ## Sobre o Template Vite
 
@@ -49,12 +49,17 @@ As tarefas são armazenadas no LocalStorage, permitindo que os dados permaneçam
 Isso é feito no useState, carregando os dados salvos, e no useEffect, que atualiza o LocalStorage toda vez que a lista de tarefas muda.
 
 const [todos, setTodos] = useState(() => {
+
   const savedTodos = localStorage.getItem("todos");
+  
   return savedTodos ? JSON.parse(savedTodos) : [];
+  
 });
 
 useEffect(() => {
+
   localStorage.setItem("todos", JSON.stringify(todos));
+  
 }, [todos]);
 
 
@@ -63,7 +68,9 @@ useEffect(() => {
 Esta função permite adicionar novas tarefas à lista. Cada nova tarefa recebe um id gerado aleatoriamente e as demais informações fornecidas pelo usuário.
 
 const addTodo = (text, category) => {
+
   const newTodos = [
+  
     ...todos,
     {
       id: Math.floor(Math.random() * 10000),
@@ -72,6 +79,7 @@ const addTodo = (text, category) => {
       isCompleted: false,
     },
   ];
+  
   setTodos(newTodos);
 };
 
@@ -81,17 +89,26 @@ const addTodo = (text, category) => {
 Alterna o status de conclusão de uma tarefa, permitindo que o usuário marque uma tarefa como concluída ou desfaça essa ação.
 
 const completeTodo = (id) => {
+
   const newTodos = [...todos];
+  
   newTodos.map((todo) =>
+  
     todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo
+    
   );
+  
   setTodos(newTodos);
+  
 };
 
 
 ## Estrutura do Projeto
 
 src/components/Todo.js: Componente responsável por exibir uma única tarefa e seus controles de concluir e remover.
+
 src/components/TodoForm.js: Formulário para adicionar novas tarefas.
+
 src/components/Search.js: Componente para buscar tarefas.
+
 src/components/Filter.js: Filtro para exibir tarefas concluídas ou pendentes.
