@@ -48,67 +48,63 @@ Armazenamento de Tarefas no LocalStorage
 As tarefas são armazenadas no LocalStorage, permitindo que os dados permaneçam disponíveis mesmo após recarregar a página.
 Isso é feito no useState, carregando os dados salvos, e no useEffect, que atualiza o LocalStorage toda vez que a lista de tarefas muda.
 
-const [todos, setTodos] = useState(() => {
-
-  const savedTodos = localStorage.getItem("todos");
-  
-  return savedTodos ? JSON.parse(savedTodos) : [];
-  
-});
-
-useEffect(() => {
-
-  localStorage.setItem("todos", JSON.stringify(todos));
-  
-}, [todos]);
+     const [todos, setTodos] = useState(() => {
+      const savedTodos = localStorage.getItem("todos");
+      
+      return savedTodos ? JSON.parse(savedTodos) : [];
+    });
+    
+    useEffect(() => {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
 
 ## Função addTodo
 
 Esta função permite adicionar novas tarefas à lista. Cada nova tarefa recebe um id gerado aleatoriamente e as demais informações fornecidas pelo usuário.
 
-const addTodo = (text, category) => {
-
-  const newTodos = [
-  
-    ...todos,
-    {
-      id: Math.floor(Math.random() * 10000),
-      text,
-      category,
-      isCompleted: false,
-    },
-  ];
-  
-  setTodos(newTodos);
-};
+    const addTodo = (text, category) => {
+    
+      const newTodos = [
+      
+        ...todos,
+        {
+          id: Math.floor(Math.random() * 10000),
+          text,
+          category,
+          isCompleted: false,
+        },
+      ];
+      
+      setTodos(newTodos);
+    };
 
 
 ## Função completeTodo
 
 Alterna o status de conclusão de uma tarefa, permitindo que o usuário marque uma tarefa como concluída ou desfaça essa ação.
 
-const completeTodo = (id) => {
-
-  const newTodos = [...todos];
-  
-  newTodos.map((todo) =>
-  
-    todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo
+    const completeTodo = (id) => {
     
-  );
-  
-  setTodos(newTodos);
-  
-};
+      const newTodos = [...todos];
+      
+      newTodos.map((todo) =>
+      
+        todo.id === id ? (todo.isCompleted = !todo.isCompleted) : todo
+        
+      );
+      
+      setTodos(newTodos);
+      
+    };
 
 
 ## Estrutura do Projeto
 
-src/components/Todo.js: Componente responsável por exibir uma única tarefa e seus controles de concluir e remover.
-
-src/components/TodoForm.js: Formulário para adicionar novas tarefas.
-
-src/components/Search.js: Componente para buscar tarefas.
-
-src/components/Filter.js: Filtro para exibir tarefas concluídas ou pendentes.
+    src/components/Todo.js: Componente responsável por exibir uma única tarefa e seus controles de concluir e remover.
+    
+    src/components/TodoForm.js: Formulário para adicionar novas tarefas.
+    
+    src/components/Search.js: Componente para buscar tarefas.
+    
+    src/components/Filter.js: Filtro para exibir tarefas concluídas ou pendentes.
