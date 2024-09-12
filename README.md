@@ -21,10 +21,6 @@ remover, buscar e filtrar suas tarefas. A lista é salva no LocalStorage, o que 
 
 Para executar a aplicação localmente, siga os passos abaixo:
 
-- Acesse https://listadetarefas-react.netlify.app/
-
-  Ou se preferir
-  
 - Clone o repositório: git clone https://github.com/Rafaeljmf/listadeTarefas.git
 
 - Instale as dependências: Na pasta do projeto, execute:
@@ -112,3 +108,9 @@ Alterna o status de conclusão de uma tarefa, permitindo que o usuário marque u
     src/components/Search.js: Componente para buscar tarefas.
     
     src/components/Filter.js: Filtro para exibir tarefas concluídas ou pendentes.
+
+## SITE 
+
+- Acesse: https://listadetarefas-react.netlify.app/
+
+
